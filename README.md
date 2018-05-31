@@ -7,3 +7,6 @@ Dynamically customizable real-time dashboard
 * jsPanel
 * Boorstrap
 * jQuery
+
+
+![Demo](https://github.com/ramazanpolat/dasher/blob/master/dasher4.gif)
