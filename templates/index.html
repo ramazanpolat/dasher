@@ -1,0 +1,1096 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dasher!</title>
+
+    <!--    <link href="css/bootstrap.min.css" rel="stylesheet">
+        <link href="css/bootstrap-theme.min.css" rel="stylesheet">-->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+          integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+
+    <link href="css/style.css" rel="stylesheet">
+    <!--<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.10.0/jquery.jspanel.min.css"/>-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.11.0/jquery.jspanel.min.css"/>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css">
+
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse"
+                            data-target="#bs-example-navbar-collapse-1">
+                        <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span
+                            class="icon-bar"></span><span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="#">Dasher</a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li class="active">
+                            <a href="#">Dashboard</a>
+                        </li>
+                        <li>
+                            <a href="#">Profile</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Settings<strong
+                                    class="caret"></strong></a>
+
+                        </li>
+                    </ul>
+                    <form class="navbar-form navbar-right" role="search">
+                        <!--<div class="form-group">
+                            <input type="text" class="form-control">
+                        </div>-->
+                        <button id="saveChartLayoutButton" type="submit" class="btn btn-default disabled">
+                            Save Layout
+                        </button>
+                    </form>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li id="demoLink">
+                            <a href="#">Demo!</a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dasher<strong
+                                    class="caret"></strong></a>
+                            <ul class="dropdown-menu">
+                                <li id="openChartEditorMenuItem">
+                                    <a href="#">Open Chart Editor</a>
+                                </li>
+                                <li id="addChartMenuItem">
+                                    <a href="#">Add Chart</a>
+                                </li>
+
+                                <li class="divider">
+                                </li>
+
+
+                                <li id="resetChartMenuItem">
+                                    <a href="#">Reset charts</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+            </nav>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+
+        </div>
+    </div>
+
+
+</div>
+
+<div id="addChartContentPlaceholder" style="visibility: hidden">
+
+    <!-- ADD CHART PANEL CONTENT -->
+    <div id="addChartPanelContent">
+
+        <!-- STEP 1 -->
+        <div class="panel panel-default" id="addChartStep1">
+            <div class="panel-heading">
+                <h3 class="panel-title">Step 1: Choose datasource</h3>
+            </div>
+            <div class="panel-body">
+
+                <div id="accordion">
+                    <h3 id="ds1">Random data 1</h3>
+                    <div>
+                        <p>
+                            This is a random data for testing purposes
+                        </p>
+                        <h4>
+                            <span class="label label-success">Initial data endpoint</span>
+                            <span class="label label-info">/chart1init</span>
+                        </h4>
+
+                        <h4>
+                            <span class="label label-success">Live data endpoint</span>
+                            <span class="label label-info"> /chart1live</span>
+                        </h4>
+                    </div>
+                    <h3 id="ds2">Random data 2</h3>
+                    <div>
+                        <p>
+                            Just another random data for testing purposes
+                        </p>
+                        <h4>
+                            <span class="label label-success">Initial data endpoint</span>
+                            <span class="label label-info">/chart2init</span>
+                        </h4>
+
+                        <h4>
+                            <span class="label label-success">Live data endpoint</span>
+                            <span class="label label-info"> /chart2live</span>
+                        </h4>
+                    </div>
+                    <h3 id="ds3">Temperature data</h3>
+                    <div>
+                        <p>
+                            Just another random data for testing purposes
+                        </p>
+                        <h4>
+                            <span class="label label-success">Initial data endpoint</span>
+                            <span class="label label-info">/tempinit</span>
+                        </h4>
+
+                        <h4>
+                            <span class="label label-success">Live data endpoint</span>
+                            <span class="label label-warning"> unavailable </span>
+                        </h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!--/END STEP 1-->
+
+        <!-- STEP 2-->
+        <div class="panel panel-default" id="addChartStep2">
+            <div class="panel-heading">
+                <h3 class="panel-title">Step 2: Paste chart JSON</h3>
+            </div>
+            <div class="panel-body">
+                <div class="form-group">
+                    <label for="highedExportedJSON">Chart JSON:</label>
+                    <textarea id="highedExportedJSON" class="form-control" rows="3">
+                        {"chart":{"type":"line","polar":false},"plotOptions":{"series":{"dataLabels":{"enabled":true},"animation":true},"line":{"step":"left"}},"title":{"text":"Kare Chart"},"subtitle":{"text":"Kareler"},"exporting":{},"yAxis":[{"title":{"text":"Değerler"}}],"xAxis":[{}],"series":[{"data":[[1166572800000,0.7614],[1166659200000,0.757],[1166745600000,0.7587],[1166832000000,0.7588],[1166918400000,0.762],[1167004800000,0.762],[1167091200000,0.7617],[1167177600000,0.7618],[1167264000000,0.7615],[1167350400000,0.7612],[1167436800000,0.7596],[1167523200000,0.758]],"name":"Exchange rate","_colorIndex":0,"_symbolIndex":0}]}
+                    </textarea>
+                </div>
+            </div>
+        </div>
+        <!--/END STEP 2-->
+
+
+        <!-- STEP 3-->
+        <div class="panel panel-default" id="addChartStep3">
+            <div class="panel-heading">
+                <h3 class="panel-title">Step 3: Set options</h3>
+            </div>
+            <div class="panel-body">
+
+
+            </div>
+        </div>
+        <!--/END STEP 3-->
+
+        <!-- STEP 4-->
+        <div class="panel panel-default" id="addChartStep4">
+            <div class="panel-heading">
+                <h3 class="panel-title">Step 4: Add chart!</h3>
+            </div>
+            <div class="panel-body">
+                <button id="addChartButton" type="button" class="btn btn-primary pull-right">Add Chart</button>
+            </div>
+        </div>
+        <!--/END STEP 4-->
+    </div>
+    <!-- /END ADD CHART PANEL CONTENT -->
+</div>
+
+<div id="jspanel-container" style="height: 100%; width: 100%">
+
+</div>
+
+<!--<script src="js/jquery.min.js"></script>-->
+<!--<script src="js/bootstrap.min.js"></script>-->
+<!-- Latest compiled and minified JavaScript -->
+<script src="//code.jquery.com/jquery-1.12.4.js"></script>
+<script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+        integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+        crossorigin="anonymous"></script>
+<script src="js/scripts.js"></script>
+<!--<script src="https://code.highcharts.com/highcharts.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highcharts/5.0.14/highcharts.js"></script>
+
+
+<!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.10.0/jquery.jspanel-compiled.min.js"></script>-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspanel3/3.11.0/jquery.jspanel-compiled.min.js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.12.4/js/bootstrap-select.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+
+<script>
+
+    var chart;
+    var ids = [];
+    var dasherChartArray = [];
+    var dasherPanelArray = [];
+
+    function getPanelById(panelId) {
+        let panelIndex = ids.indexOf(panelId);
+        return panelIndex < 0 ? null : dasherPanelArray[panelIndex];
+    }
+
+    function getChartById(panelId) {
+        let panelIndex = ids.indexOf(panelId);
+        return panelIndex < 0 ? null : dasherChartArray[panelIndex];
+    }
+
+    function getChartContainerById(panelId) {
+        return $('#highcharts-container_' + panelId);
+    }
+
+    function getPanelDomById(panelId) {
+        return $('#jsPanel_' + panelId);
+    }
+
+    function uuidv4() {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
+    }
+
+    /*$.jsPanel({
+        position: {my: "center-top", at: "center-top", offsetY: 15},
+        theme: "rebeccapurple",
+        contentSize: {width: 600, height: 350},
+        headerTitle: "Example jsPanel",
+        content: "<p>Some sample text ...</p>",
+        callback: function () {
+            this.content.css("padding", "15px");
+        }
+    });
+*/
+    function addPanelWithChart(chartInfo) {
+        //console.log('chart name=' + chartInfo.name);
+
+        let randomId = uuidv4();
+
+
+        //var chartId = uuidv4();
+        let highchartParam = chartInfo.chart_param;
+        highchartParam.chart.renderTo = 'highcharts-container_' + randomId;
+
+        //var panelId = chartId;
+
+        let aPanel = $.jsPanel({
+            //container: '#jspanel-container',
+            //position: {my: "left-center", at: "left-center", offsetY: 15},
+            //id: 'jsPanel_' + randomId,
+            id: chartInfo.id,
+            position: chartInfo.panel_param.position,
+            theme: "crimson",
+            //contentSize: {width: 800, height: 400},
+            contentSize: chartInfo.panel_param.panelSize,
+            //panelSize: chartInfo.panel_param.panelSize,
+            headerTitle: "Dasher - " + chartInfo.name,
+            content: "<div id='" + highchartParam.chart.renderTo + "'></div>",
+            callback: function () {
+                //this.content.css("padding", "5px");
+
+                ids.push(chartInfo.id);
+                console.log(chartInfo.id + ' pushed to ids.');
+
+                //this.header.controls.css('visibility', 'hidden');
+
+
+                let initEndpoint = chartInfo.initial_data_endpoint;
+                let liveEndpoint = chartInfo.live_data_endpoint;
+
+                let tempChartObject = {'chart': null};
+
+                let initDataFunction = initDataFactory({
+                    chartId: chartInfo.id,
+                    initUrl: initEndpoint,
+                    liveUrl: liveEndpoint,
+                    targetChart: tempChartObject
+                });
+                highchartParam.chart.events.load = initDataFunction;
+                tempChartObject.chart = new Highcharts.Chart(highchartParam);
+                dasherChartArray.push(tempChartObject);
+
+            },
+            show: "jsPanelFadeIn",
+            draggable: {
+                disabled: false,
+                start: function (event, ui) {
+                    isChartLayoutChanged = true;
+                    //$('.jsPanel-content', ui.element).empty().append('<p>Panel resizing started!</p>');
+                    console.log('dragit start');
+                },
+                stop: function (event, ui) {
+                    //$('.jsPanel-content', ui.element).empty().append('<p>Panel resizing started!</p>');
+                    console.log('dragit end');
+                    isChartLayoutChanged = true;
+                }
+            },
+            resizable: {
+                start: function (event, ui) {
+                    isChartLayoutChanged = true;
+                    //$('.jsPanel-content', ui.element).empty().append('<p>Panel resizing started!</p>');
+                    console.log(`Resizing from:${JSON.stringify(ui.originalPosition)} ${JSON.stringify(ui.originalSize)} `);
+                },
+                /*resize: function (event, ui) {
+                    // this function gradually repositions the panel on resize
+                    ui.helper[0].jspanel.reposition({
+                        left: function () {
+                            var l;
+                            if (this.option.container === 'body') {
+                                l = ($(window).outerWidth() - this.outerWidth()) * this.hf;
+                            } else {
+                                l = (this.parent().outerWidth() - this.outerWidth()) * this.hf;
+                            }
+                            return l <= 0 ? 0 : l;
+                        },
+                        top: function () {
+                            var t;
+                            if (this.option.container === 'body') {
+                                t = ($(window).outerHeight() - this.outerHeight()) * this.vf;
+                            } else {
+                                t = (this.parent().outerHeight() - this.outerHeight()) * this.vf;
+                            }
+                            return t <= 0 ? 0 : t;
+                        }
+                    });
+                },*/
+                stop: function (event, ui) {
+                    isChartLayoutChanged = true;
+//                $('.jsPanel-content', ui.element).empty().append('<p>Panel resizing stopped!</p>');
+                    console.log(`Resizing ${chartInfo.id} to:${JSON.stringify(ui.position)} ${JSON.stringify(ui.size)} `);
+
+
+                    /*jspanel.css({width: 500, height: 300});
+                    jspanel.contentResize();*/
+
+//                    getPanelById(randomId).css(ui.size);
+//                    getPanelById(randomId).contentResize();
+                    getChartById(chartInfo.id).chart.setSize(ui.size.width - 40, ui.size.height - 40, true);
+                }
+            },
+            onbeforeclose: function (e) {
+                console.log('close attempt for chartId=' + chartInfo.id);
+
+
+                let dasherDeleteChartRequest = {
+                    'op': 'deleteChart',
+                    'data': chartInfo.id
+                };
+
+                $.ajax({
+                    type: "POST",
+                    url: '/dasher',
+                    contentType: "application/json",
+                    data: JSON.stringify(dasherDeleteChartRequest),
+                    success: function (response) {
+                        if (response.success) {
+                            console.log('Chart removed from Dasher Server');
+                            jsPanel.activePanels.getPanel(chartInfo.id).close(false, true, true);
+
+                        }
+                        else if (response.message) {
+                            alert('Error sending Dasher Chart to Server:' + response.message);
+                            console.log('Error sending Dasher Chart to Server:' + response.message);
+                        }
+                        else {
+                            alert('Error sending Dasher Chart to Server: Fatal Error');
+                            console.log('Error sending Dasher Chart to Server: Fatal Error!');
+                        }
+                    },
+                    cache: false
+                });
+
+
+                return false;
+            }
+        });
+        dasherPanelArray.push(aPanel);
+
+    }
+
+    function startDasher() {
+        $.ajax({
+            url: '/dasher',
+            success: function (dasherResponse) {
+                for (var i = 0; i < dasherResponse.charts.length; i++) {
+                    addPanelWithChart(dasherResponse.charts[i]);
+                    /*var highchartParam = dasherResponse.charts[i].chart_param;
+                    highchartParam.chart.renderTo = 'highcharts-container' + i;
+
+
+                    var aPanel = $.jsPanel({
+                        container: '#jspanel-container',
+                        position: {my: "left-center", at: "left-center", offsetY: 15},
+                        theme: "crimson",
+                        //contentSize: {width: 800, height: 400},
+                        panelSize: {width: 800, height: 400},
+                        headerTitle: "jsPanel" + i,
+                        content: "<div id='" + highchartParam.chart.renderTo + "'></div>",
+                        callback: function () {
+                            this.content.css("padding", "5px");
+
+                            var initEndpoint = dasherResponse.charts[i].initial_data_endpoint;
+                            var liveEndpoint = dasherResponse.charts[i].live_data_endpoint;
+
+                            var tempChartObject = {'chart': null};
+
+                            var initDataFunction = initDataFactory({
+                                initUrl: initEndpoint,
+                                liveUrl: liveEndpoint,
+                                targetChart: tempChartObject
+                            });
+                            highchartParam.chart.events.load = initDataFunction;
+                            tempChartObject.chart = new Highcharts.Chart(highchartParam);
+                            dasherChartArray.push(tempChartObject);
+
+                        },
+                        show: "jsPanelFadeIn"
+
+                    });
+                    dasherPanelArray.push(aPanel);*/
+                }
+            },
+            cache: false
+        });
+    }
+
+    function initDataFactory(chartProps) {
+        var initUrl = String(chartProps.initUrl);
+        //console.log('initUrl:' + initUrl);
+        var fn1 = function () {
+            $.ajax({
+                url: initUrl,
+                success: function (response) {
+                    var targetChart = chartProps.targetChart.chart;
+                    var pointList = response.result;
+                    var series = targetChart.series[0],
+                        shift = series.data.length > 20; // shift if the series is
+                                                         // longer than 20
+
+                    // add the point
+                    for (var i = 0; i < pointList.length; i++)
+                        targetChart.series[0].addPoint(pointList[i], true, shift);
+
+                    //chart.series[0].addPoint(JSON.parse(point), true, shift);
+
+                    var liveDataFunction = liveDataFactory(chartProps);
+                    // call it again after one second
+                    setTimeout(liveDataFunction, 2000);
+                },
+                cache: false
+            });
+        };
+        return fn1;
+    }
+
+    function liveDataFactory(chartProps) {
+        var liveUrl = String(chartProps.liveUrl);
+        //console.log('liveUrl:' + liveUrl);
+        var fn2 = function () {
+            $.ajax({
+                url: liveUrl,
+                success: function (response) {
+                    var targetChart = chartProps.targetChart.chart;
+                    var series = targetChart.series[0],
+                        shift = series.data.length > 20; // shift if the series is
+                                                         // longer than 20
+
+                    // add the point
+                    targetChart.series[0].addPoint(response.result, true, shift);
+                    targetChart.reflow();
+                    //chart.series[0].addPoint(JSON.parse(point), true, shift);
+
+                    // call it again after one second
+                    if (jsPanel.activePanels.list.indexOf(chartProps.chartId) >= 0) {
+                        setTimeout(fn2, 2000);
+                    }
+                },
+                cache: false
+            });
+        };
+
+        return fn2;
+    }
+
+    var isChartLayoutChanged = false;
+
+    function saveLayoutButtonToggle(isEnabled) {
+        if (isEnabled)
+            $('#saveChartLayoutButton').removeClass('disabled');
+        else
+            $('#saveChartLayoutButton').addClass('disabled');
+    }
+
+    setInterval(function () {
+        saveLayoutButtonToggle(isChartLayoutChanged);
+    }, 100);
+
+    function initData() {
+        $.ajax({
+            url: '/chart1init',
+            success: function (response) {
+                var targetChart = dasherChartArray[0];
+                var pointList = response.result;
+                var series = targetChart.series[0],
+                    shift = series.data.length > 20; // shift if the series is
+                                                     // longer than 20
+
+                // add the point
+                for (var i = 0; i < pointList.length; i++)
+                    targetChart.series[0].addPoint(pointList[i], true, shift);
+
+                //chart.series[0].addPoint(JSON.parse(point), true, shift);
+
+                // call it again after one second
+                setTimeout(liveData, 2000);
+            },
+            cache: false
+        });
+    }
+
+    function liveData() {
+        $.ajax({
+            url: '/chart1live',
+            success: function (response) {
+                //console.log(point);
+                var targetChart = dasherChartArray[0];
+                var series = targetChart.series[0],
+                    shift = series.data.length > 20; // shift if the series is
+                                                     // longer than 20
+
+                // add the point
+                targetChart.series[0].addPoint(response, true, shift);
+
+                //chart.reflow();
+
+                // call it again after one second
+                setTimeout(liveData, 2000);
+            },
+            cache: false
+        });
+    }
+
+
+    var addChartPanel = null;
+
+    function addChart() {
+        //var html = $('#addChartTemplate').html();
+
+        addChartPanel = $.jsPanel({
+            //container: '#jspanel-container',
+            paneltype: 'modal',
+            theme: "crimson",
+            //contentSize: {width: 800, height: 400},
+            panelSize: {width: 800, height: 800},
+            headerTitle: "Add chart",
+            content: `<div id="addChartPanelContent"></div>`,
+            callback: function () {
+                this.content.css("padding", "5px");
+                $('#addChartPanelContent').detach().appendTo('#addChartPanelContent');
+                console.log('jsPanel2 callback');
+            },
+            show: "jsPanelFadeIn",
+            onbeforeclose: function (e) {
+                console.log('closing!');
+                $('#addChartPanelContent').detach().appendTo('#addChartContentPlaceholder');
+                return true;
+            }
+        });
+    }
+
+    setTimeout(function () {
+        let activePanelLayoutResult = getActivePanelLayouts();
+
+        activePanelLayoutResult.forEach(function (panelLayout) {
+            let $panelDom = getPanelDomById(panelLayout.id);
+
+            $panelDom.mouseenter(function () {
+                //console.log('mouseENTER on ' + id);
+                panel.header.controls.css('visibility', 'initial');
+
+                /*panel.headerControl("close", "enable");
+                panel.headerControl("maximize", "enable");
+                panel.headerControl("minimize", "enable");
+                panel.headerControl("normalize", "enable");
+                panel.headerControl("smallify", "enable");*/
+            });
+
+            $panelDom.mouseleave(function () {
+                //console.log('mouseLEAVE on ' + id);
+                panel.header.controls.css('visibility', 'hidden');
+
+                /*panel.headerControl("close", "disable");
+                panel.headerControl("maximize", "disable");
+                panel.headerControl("minimize", "disable");
+                panel.headerControl("normalize", "disable");
+                panel.headerControl("smallify", "disable");*/
+            });
+
+
+        });
+
+        /*for (let i = 0; i < ids.length; i++) {
+            let id = ids[i];
+
+            let panel = getPanelById(id);
+            //console.log(panel);
+
+            let $panelDom = getPanelDomById(id);
+
+            $panelDom.mouseenter(function () {
+                //console.log('mouseENTER on ' + id);
+                panel.header.controls.css('visibility', 'initial');
+
+                /!*panel.headerControl("close", "enable");
+                panel.headerControl("maximize", "enable");
+                panel.headerControl("minimize", "enable");
+                panel.headerControl("normalize", "enable");
+                panel.headerControl("smallify", "enable");*!/
+            });
+
+            $panelDom.mouseleave(function () {
+                //console.log('mouseLEAVE on ' + id);
+                panel.header.controls.css('visibility', 'hidden');
+
+                /!*panel.headerControl("close", "disable");
+                panel.headerControl("maximize", "disable");
+                panel.headerControl("minimize", "disable");
+                panel.headerControl("normalize", "disable");
+                panel.headerControl("smallify", "disable");*!/
+            });
+
+        }*/
+    }, 1000);
+
+    var activeDataSourceId = 'ds1';
+
+    function transformChartJson(highedExportedJSON) {
+
+        let newJson = JSON.parse(highedExportedJSON);
+
+        //1. add renderTo
+        //	        chart_param.chart.renderTo= 'container2'
+        newJson.chart.renderTo = 'container2';
+
+        //2. delete series data
+        //  series[0].data = []
+        newJson.series[0].data = [];
+
+        //3. add load event:
+        //	chart.events: {
+        //		'load': 'function'
+        //	}
+        newJson.chart.events = {
+            'load': 'function'
+        };
+
+        return newJson;
+    }
+
+    function randomInt(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+    }
+
+    function generateDasherChartObject(panel_param, chartObject) {
+        let transformedChart = transformChartJson(chartObject);
+        let randomId = uuidv4();
+        let result = {
+            'id': randomId,
+            'name': 'chart4',
+            'data_source': 'ds3',
+            'initial_data_endpoint': '/chart2init',
+            'live_data_endpoint': '/chart2live',
+            'live_update': true,
+            'panel_param': {
+                'position': {
+                    'left': randomInt(50, 300),
+                    'top': randomInt(50, 300)
+                },
+                'panelSize': {
+                    'width': randomInt(400, 900),
+                    'height': randomInt(250, 450)
+                },
+            },
+            'chart_param': transformedChart
+        }
+        return result;
+    }
+
+    function getActivePanelPositions() {
+        var result = [];
+
+        let activePanelIds = jsPanel.activePanels.list;
+
+        activePanelIds.forEach(function (panelId) {
+            let position = $('#' + panelId).position();
+            result.push({
+                id: panelId,
+                position: position
+            })
+        });
+
+        return result;
+    }
+
+    function getActivePanelLayouts() {
+        var result = [];
+
+        let activePanelIds = jsPanel.activePanels.list;
+
+        activePanelIds.forEach(function (panelId) {
+            let position = $('#' + panelId).position();
+            let height = $('#' + panelId + ' > div.jsPanel-content').height();
+            let width = $('#' + panelId + ' > div.jsPanel-content').width();
+
+
+            result.push({
+                id: panelId,
+                position: position,
+                size: {
+                    height: height,
+                    width: width
+                }
+            })
+        });
+
+        return result;
+    }
+
+    $(document).ready(function () {
+        $('#accordion').accordion();
+        startDasher();
+
+        $('#ds1').click(function () {
+            activeDataSourceId = 'ds1';
+            console.log('active datasource id =' + activeDataSourceId);
+        });
+
+        $('#ds2').click(function () {
+            activeDataSourceId = 'ds2';
+            console.log('active datasource id =' + activeDataSourceId);
+        });
+
+        $('#ds3').click(function () {
+            activeDataSourceId = 'ds3';
+            console.log('active datasource id =' + activeDataSourceId);
+        });
+
+        $('#demoLink').click(function (e) {
+            e.preventDefault();
+
+
+            $.jsPanel({
+                position: {
+                    left: 20,
+                    top: 120
+                },
+                contentSize: {
+                    width: 700, height: 500
+                },
+                //theme: '',
+                headerTitle: 'Dulkadirli',
+                contentIframe: {
+                    src: 'http://derpanoramafotograf.com/EN/projects/fskrpano.php?pano=120831-058'
+                },
+                callback: function () {
+                    this.content.css('padding', '5px');
+                }
+            });
+
+            $.jsPanel({
+                position: {
+                    left: 750,
+                    top: 220
+                },
+                content: "<video controls autoplay><source src='http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4' type='video/mp4'></video>",
+                contentSize: {width: 640, height: 360},
+                headerTitle: "content: HTML5 video"
+
+            });
+
+        });
+
+        $('#addChartButton').click(function (e) {
+            e.preventDefault();
+
+            //sendNewChartToDasher(generateDasherChartObject(1, highedExportedJSON));
+            //console.log('#addChartButton clicked');
+
+            var highedExportedJSON = $('#highedExportedJSON').val();
+            //console.log('got highedExportedJSON');
+            var dasherChartObject = generateDasherChartObject(1, highedExportedJSON);
+            //console.log('got dasherChartObject');
+
+            var dasherInserChartRequest = {
+                'op': 'insert',
+                'data': dasherChartObject
+            };
+//            console.log('got dasherInserChartRequest:'+JSON.stringify(dasherInserChartRequest));
+
+
+            $.ajax({
+                type: "POST",
+                url: '/dasher',
+                contentType: "application/json",
+                data: JSON.stringify(dasherInserChartRequest),
+                success: function (response) {
+                    if (response.success) {
+                        console.log('successfully added to Dasher Server');
+                        addChartPanel.close(function () {
+                            addPanelWithChart(dasherChartObject);
+                            console.log('closed with #addChartButton!');
+                        }, true, true);
+                    }
+                    else if (response.message) {
+                        alert('Error sending Dasher Chart to Server:' + response.message);
+                        console.log('Error sending Dasher Chart to Server:' + response.message);
+                    }
+                    else {
+                        alert('Error sending Dasher Chart to Server: Fatal Error');
+                        console.log('Error sending Dasher Chart to Server: Fatal Error!');
+                    }
+                },
+                cache: false
+            });
+
+        });
+
+        $('#saveChartLayoutButton').click(function (e) {
+
+            e.preventDefault();
+
+            let newPanelLayout = getActivePanelLayouts();
+
+            let dasherSaveLayoutRequest = {
+                'op': 'saveLayout',
+                'data': newPanelLayout
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/dasher',
+                contentType: "application/json",
+                data: JSON.stringify(dasherSaveLayoutRequest),
+                success: function (response) {
+                    if (response.success) {
+                        console.log('Layout saved to Dasher Server');
+                        isChartLayoutChanged = false;
+                        /*addChartPanel.close(function () {
+                            addPanelWithChart(dasherChartObject);
+                            console.log('closed with #addChartButton!');
+                        }, false, false);*/
+                    }
+                    else if (response.message) {
+                        alert('Error sending Dasher Chart to Server:' + response.message);
+                        console.log('Error sending Dasher Chart to Server:' + response.message);
+                    }
+                    else {
+                        alert('Error sending Dasher Chart to Server: Fatal Error');
+                        console.log('Error sending Dasher Chart to Server: Fatal Error!');
+                    }
+                },
+                cache: false
+            });
+
+        });
+
+        /*$("#jspanel-container").mouseover(function () {
+            console.log('mouseOVER');
+            for (let i = 0; i < jsPanel.activePanels.list.length; i++) {
+                jsPanel.activePanels.getPanel(i).headerControl("close", "disable");
+                jsPanel.activePanels.getPanel(i).headerControl("maximize", "disable");
+                jsPanel.activePanels.getPanel(i).headerControl("minimize", "disable");
+                jsPanel.activePanels.getPanel(i).headerControl("normalize", "disable");
+                jsPanel.activePanels.getPanel(i).headerControl("smallify", "disable");
+            }
+        });
+
+        $("#jspanel-container").mouseout(function () {
+            console.log('mouseOUT');
+            for (let i = 0; i < jsPanel.activePanels.list.length; i++) {
+                jsPanel.activePanels.getPanel(i).headerControl("close", "enable");
+                jsPanel.activePanels.getPanel(i).headerControl("maximize", "enable");
+                jsPanel.activePanels.getPanel(i).headerControl("minimize", "enable");
+                jsPanel.activePanels.getPanel(i).headerControl("normalize", "enable");
+                jsPanel.activePanels.getPanel(i).headerControl("smallify", "enable");
+                jsPanel.activePanels.getPanel(i).headerControl("smallifyrev", "enable");
+            }
+        });*/
+
+
+        $('#resetChartMenuItem').click(function (e) {
+            //e.preventDefault();
+
+            let dasherResetChartsRequest = {
+                'op': 'reset',
+                'data': 'nop'
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '/dasher',
+                contentType: "application/json",
+                data: JSON.stringify(dasherResetChartsRequest),
+                success: function (response) {
+                    if (response.success) {
+                        console.log('Char reset!');
+                        location.reload();
+                    }
+                    else if (response.message) {
+                        alert('Error sending Dasher Chart to Server:' + response.message);
+                        console.log('Error sending Dasher Chart to Server:' + response.message);
+                    }
+                    else {
+                        alert('Error sending Dasher Chart to Server: Fatal Error');
+                        console.log('Error sending Dasher Chart to Server: Fatal Error!');
+                    }
+                },
+                cache: false
+            });
+
+
+        });
+
+        $('#openChartEditorMenuItem').click(function (e) {
+            e.preventDefault();
+            var newPanelFrame = $.jsPanel({
+                paneltype: 'modal',
+                theme: 'success',
+                //contentSize: {width: 800, height: 400},
+                //panelSize: {width: 800, height: 400},
+                contentSize: {width: $(window).width() * .8, height: $(window).height() * .85},
+                headerTitle: "Add new chart...",
+                contentIframe: {
+                    src: '/editor'
+                },
+                callback: function () {
+                    this.content.css("padding", "5px");
+                    //console.log('jsPanel callback');
+                },
+                show: "jsPanelFadeIn"
+            });
+
+
+        });
+
+        $('#addChartMenuItem').click(function (e) {
+            e.preventDefault();
+            addChart();
+        });
+
+
+        /*panel1 = $.jsPanel({
+            container: '#jspanel-container',
+            position: {my: "left-center", at: "left-center", offsetY: 15},
+            theme: "crimson",
+            //contentSize: {width: 800, height: 400},
+            panelSize: {width: 800, height: 400},
+            headerTitle: "Example jsPanel",
+            content: "<div id=\"container2\"></div>",
+            callback: function () {
+                this.content.css("padding", "5px");
+
+            },
+            dragit: {
+                //containment: [5, 5, 5, 5],
+                containment: 'window',
+                grid: [40, 40],
+                stop: function (panel, position) {
+                    //console.log(panel1.option.contentSize);
+                }
+            },
+            onresized: function () {
+                console.log('width:' + panel1.option.contentSize.width);
+                console.log('height:' + panel1.option.contentSize.height);
+
+//                chart.chartHeight = panel1.option.contentSize.height;
+//                chart.chartWidth = panel1.option.contentSize.width;
+            },
+            show: "jsPanelFadeIn"
+
+        });
+
+        chart = new Highcharts.Chart({
+            chart: {
+                renderTo: 'container2',
+                defaultSeriesType: 'spline',
+                events: {
+                    load: initData
+                }
+            },
+            title: {
+                text: 'Live random data'
+            },
+            xAxis: {
+                type: 'datetime',
+                tickPixelInterval: 150,
+                maxZoom: 20 * 1000
+            },
+            yAxis: {
+                minPadding: 0.2,
+                maxPadding: 0.2,
+                title: {
+                    text: 'Value',
+                    margin: 10
+                }
+            },
+            series: [{
+                name: 'Random data',
+                data: []
+            }]
+        });*/
+
+        function onceAjax() {
+            $.ajax({
+                url: '/chart1feed',
+                success: function (result) {
+                    console.log(result);
+                },
+                cache: false
+            });
+        }
+
+        function requestData() {
+            if (1 < 2) {
+                $.ajax({
+                    url: '/chart1feed',
+                    success: function (point) {
+                        console.log(point);
+                        var series = chart.series[0],
+                            shift = series.data.length > 20; // shift if the series is
+                                                             // longer than 20
+
+                        // add the point
+                        chart.series[0].addPoint(JSON.parse(point), true, shift);
+
+                        // call it again after one second
+                        setTimeout(requestData, 2000);
+                    },
+                    cache: false
+                });
+            }
+        }
+
+    });
+</script>
+</body>
+</html>

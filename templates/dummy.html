@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<div id="highcharts1">
+
+</div>
+<script>
+    (function () {
+        function include(script, next) {
+            var sc = document.createElement("script");
+            sc.src = script;
+            sc.type = "text/javascript";
+            sc.onload = function () {
+                if (++next < incl.length) include(incl[next], next);
+            };
+            document.head.appendChild(sc);
+        }
+
+        function each(a, fn) {
+            if (typeof a.forEach !== "undefined") {
+                a.forEach(fn);
+            } else {
+                for (var i = 0; i < a.length; i++) {
+                    if (fn) {
+                        fn(a[i]);
+                    }
+                }
+            }
+        }
+
+        var inc = {}, incl = [];
+        each(document.querySelectorAll("script"), function (t) {
+            inc[t.src.substr(0, t.src.indexOf("?"))] = 1;
+        });
+        each(Object.keys({
+            "https://code.highcharts.com/stock/highstock.js": 1,
+            "https://code.highcharts.com/adapters/standalone-framework.js": 1,
+            "https://code.highcharts.com/highcharts-more.js": 1,
+            "https://code.highcharts.com/highcharts-3d.js": 1,
+            "https://code.highcharts.com/modules/data.js": 1,
+            "https://code.highcharts.com/modules/exporting.js": 1,
+            "http://code.highcharts.com/modules/funnel.js": 1,
+            "http://code.highcharts.com/modules/solid-gauge.js": 1
+        }), function (k) {
+            if (!inc[k]) {
+                incl.push(k)
+            }
+        });
+        if (incl.length > 0) {
+            include(incl[0], 0);
+        }
+
+        function cl() {
+            if (typeof window["Highcharts"] !== "undefined") {
+                new Highcharts.Chart("highcharts1", {
+                    "chart": {
+                        "type": "spline",
+                        "polar": false
+                    },
+                    "plotOptions": {"series": {"dataLabels": {"enabled": true}, "animation": true}},
+                    "title": {"text": "My Chart"},
+                    "subtitle": {"text": "My Untitled Chart"},
+                    "exporting": {},
+                    "yAxis": [{}],
+                    "xAxis": [{}],
+                    "series": [{
+                        "data": [["Jan", 7], ["Feb", 6.9], ["Mar", 9.5], ["Apr", 14.5], ["May", 18.2], ["Jun", 21.5], ["Jul", 25.2], ["Aug", 26.5], ["Sep", 23.3], ["Oct", 18.3], ["Nov", 13.9], ["Dec", 9.6]],
+                        "name": "Tokyo",
+                        "turboThreshold": 0,
+                        "_colorIndex": 0,
+                        "_symbolIndex": 0
+                    }, {
+                        "data": [["Jan", -0.2], ["Feb", 0.8], ["Mar", 5.7], ["Apr", 11.3], ["May", 17], ["Jun", 22], ["Jul", 24.8], ["Aug", 24.1], ["Sep", 20.1], ["Oct", 14.1], ["Nov", 8.6], ["Dec", 2.5]],
+                        "name": "New York",
+                        "turboThreshold": 0,
+                        "_colorIndex": 1,
+                        "_symbolIndex": 1
+                    }, {
+                        "data": [["Jan", -0.9], ["Feb", 0.6], ["Mar", 3.5], ["Apr", 8.4], ["May", 13.5], ["Jun", 17], ["Jul", 18.6], ["Aug", 17.9], ["Sep", 14.3], ["Oct", 9], ["Nov", 3.9], ["Dec", 1]],
+                        "name": "Berlin",
+                        "turboThreshold": 0,
+                        "_colorIndex": 2,
+                        "_symbolIndex": 2
+                    }, {
+                        "data": [["Jan", 3.9], ["Feb", 4.2], ["Mar", 5.7], ["Apr", 8.5], ["May", 11.9], ["Jun", 15.2], ["Jul", 17], ["Aug", 16.6], ["Sep", 14.2], ["Oct", 10.3], ["Nov", 6.6], ["Dec", 4.8]],
+                        "name": "London",
+                        "turboThreshold": 0,
+                        "_colorIndex": 3,
+                        "_symbolIndex": 3
+                    }]
+                });
+            } else window.setTimeout(cl, 20);
+        }
+
+        //cl();
+    })();
+
+</script>
+
+</body>
+</html>
